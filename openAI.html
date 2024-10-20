@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - OpenAI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .resume-section {
+            margin: 20px 0;
+            border-bottom: 1px solid #585757;
+            padding-bottom: 10px;
+        }
+        .head {
+            font-size: 24px;
+        }
+        .head2 {
+            font-size: 20px;
+            color: gray;
+        }
+        .content {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <center>
+        <h2 class="head">Resume Builder - OpenAI</h2>
+        <h2 class="head2">Version 0.0 - Enhanced</h2>
+    </center>
+    <br>
+
+    <div class="box">
+        <!-- JavaScript starts here -->
+        <script>
+            function promptWithValidation(promptText, validationFn, errorMessage) {
+                let value;
+                do {
+                    value = prompt(promptText);
+                    if (validationFn(value)) {
+                        break;
+                    }
+                    alert(errorMessage);
+                } while (true);
+                return value;
+            }
+
+            const name = prompt("Enter your full name: ");
+            const address = prompt("Enter your address: ");
+            const phone = promptWithValidation("Enter your phone number (digits only): ", value => /^\d+$/.test(value), "Invalid phone number. Please enter digits only.");
+            const email = promptWithValidation("Enter your Email ID (must end with @gmail.com): ", value => value.endsWith('@gmail.com'), "Invalid email. Please enter a valid Gmail address.");
+            const university = prompt("Enter your university name: ");
+
+            document.write(`<div class='resume-section'><h1>Myself:</h1><p class='content'>${name}</p></div>`);
+            document.write(`<div class='resume-section'><h1>Address:</h1><p class='content'>${address}</p></div>`);
+            document.write(`<div class='resume-section'><h1>Phone Number:</h1><p class='content'>${phone}</p></div>`);
+            document.write(`<div class='resume-section'><h1>Email ID:</h1><p class='content'>${email}</p></div>`);
+            
+            document.write(`<div class='resume-section'><h1>Ambition:</h1><p class='content'>Innovative computer science student seeking an internship position to utilize my software development skills while exploring real-world challenges in the tech industry.</p></div>`);
+
+            document.write(`<div class='resume-section'><h1>Education:</h1><p class='content'>Bachelor’s in Technology<br>University: ${university}</p></div>`);
+
+            // Skills section
+            let programmingLanguages = [];
+            let frameworks = [];
+            let tools = [];
+            let softSkills = [];
+
+            const programmingOptions = ["Python", "Java", "C", "C++", "JavaScript", "TypeScript", "Ruby"];
+            const frameworkOptions = ["React", "Angular", "Vue.js", "Django", "Flask", "Spring"];
+            const toolOptions = ["Git", "Docker", "Jenkins", "Postman", "Visual Studio Code"];
+            const softSkillOptions = ["Communication", "Teamwork", "Problem-solving", "Adaptability", "Time Management", "Leadership"];
+
+            function handleSelection(promptText, options, otherLabel) {
+                let choice = prompt(promptText + options.map((opt, index) => `\n${index + 1}) ${opt}`).join("") + `\n${options.length + 1}) ${otherLabel}`);
+                let selections = [];
+                choice.split(",").forEach(item => {
+                    let index = parseInt(item.trim()) - 1;
+                    if (index >= 0 && index < options.length) {
+                        selections.push(options[index]);
+                    } else if (index === options.length) {
+                        selections.push(prompt("Please specify:"));
+                    }
+                });
+                return selections;
+            }
+
+            // Programming Languages
+            programmingLanguages = handleSelection("Select your programming languages (Type numbers separated by commas):", programmingOptions, "Other");
+
+            // Frameworks
+            frameworks = handleSelection("Select your frameworks (Type numbers separated by commas):", frameworkOptions, "Other");
+
+            // Tools
+            tools = handleSelection("Select your tools (Type numbers separated by commas):", toolOptions, "Other");
+
+            // Soft Skills
+            softSkills = handleSelection("Select your soft skills (Type numbers separated by commas):", softSkillOptions, "Other");
+
+            document.write(`<div class='resume-section'><h1>Skills:</h1>`);
+            document.write(`<h2>Programming Languages:</h2><p class='content'>${programmingLanguages.join("<br>")}</p>`);
+            document.write(`<h2>Frameworks:</h2><p class='content'>${frameworks.join("<br>")}</p>`);
+            document.write(`<h2>Tools:</h2><p class='content'>${tools.join("<br>")}</p>`);
+            document.write(`<h2>Soft Skills:</h2><p class='content'>${softSkills.join("<br>")}</p></div>`);
+
+            // Languages section
+            const languages = prompt("Enter the languages you are skilled in (separated by commas): ");
+            document.write(`<div class='resume-section'><h1>Languages:</h1><p class='content'>${languages.split(",").join("<br>")}</p></div>`);
+
+            // Projects section
+            const projects = prompt("Enter your projects (separated by commas): ");
+            document.write(`<div class='resume-section'><h1>Projects:</h1><p class='content'>${projects.split(",").join("<br>")}</p></div>`);
+
+            // Work Experience section
+            const workExperience = prompt("Enter your work experience (briefly describe each position): ");
+            document.write(`<div class='resume-section'><h1>Work Experience:</h1><p class='content'>${workExperience}</p></div>`);
+
+            // Additional Info - Hobbies
+            const hobbies = prompt("Enter your hobbies or interests (separated by commas): ");
+            document.write(`<div class='resume-section'><h1>Hobbies:</h1><p class='content'>${hobbies.split(",").join("<br>")}</p></div>`);
+
+            document.write(`<div class='resume-section'><h1>Thank you for taking the time to review my resume, I would be happy to provide further information upon request.</h1></div>`);
+        </script> 
+        <!-- End of JavaScript -->
+    </div>
+
+</body>
+
+
+
+
+
+    <!-- Styling the resume builder -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+       
+        body {
+            background-color: rgba(48, 90, 45, 0.802);
+            margin-left: 15px;
+            margin-right: 15px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 20px;
+        }
+
+        .head {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: black;
+            font-size: 25px;
+        }
+
+        .head2 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: black;
+            font-size: 19px;
+        }
+
+        h1 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 20px;
+            color: white;
+        }
+
+        /* test moving  */
+        h1 {
+
+            position: relative;
+
+        }
+
+        h1::after {
+
+            content: '|';
+            position: absolute;
+            right: 0;
+            color: white;
+            background-color: #0c0b14;
+            width: 100%;
+            animation: writing 13s ease-in forwards, blink 1s infinite;
+
+        }
+
+        @keyframes writing {
+
+            to {
+                width: 0%;
+            }
+        }
+
+        @keyframes blink {
+            40% {
+                color: transparent;
+            }
+        }
+
+
+        /* end test moving */
+
+        .box {
+            margin: auto;
+            width: 100%;
+            height: 100%;
+            background-color: #0c0b14;
+            padding-left: 30px;
+            padding-right: 50px;
+            padding-top: 30px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: white;
+        }
+
+        prompt{
+            color: red;
+            background-color: red;
+        }
+    </style>
+    <!-- End Styling the resume builder -->
+
+
+</body>
+
+</html>
